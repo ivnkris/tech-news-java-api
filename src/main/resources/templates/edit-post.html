@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <title>Edit Post</title>
 </head>
@@ -17,10 +19,10 @@
         Edit Post
     </h2>
 
-    <form action="#" th:action="@{/posts/{id}(id=${post.id})}" th:object="${post}" class="edit-post-form">
+    <form action="#" th:action="@{/posts/{id}(id=${post.id})}" th:object="${post}" method="post" class="edit-post-form">
         <div>
-            <input type="text" th:field="*{title}" />
-            <span th:text="${#strings.replace(post.postUrl, 'http://','')}"></span>
+            <input type="text" th:field="*{title}"/>
+            <span th:text="${#strings.replace(post.postUrl,'http://','')}"></span>
         </div>
         <div th:if="${post.voteCount == 1}" class="meta">
             [[${post.voteCount}]] point by [[${post.userName}]] on
@@ -43,7 +45,7 @@
 
     <form action="#" th:action="@{/comments/edit}" th:object="${comment}" method="post" class="comment-form">
         <div>
-            <input type="hidden" th:value="${post.id}" name="postId" />
+            <input type="hidden" th:value="${post.id}" name="postId"/>
             <textarea name="comment-body" th:field="*{commentText}"></textarea>
         </div>
 
